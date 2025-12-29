@@ -106,17 +106,34 @@ function Pizza({ pizzaObj }) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 9;
   const closeHour = 22;
-  const isOpen = hour >= openHour && hour >= closeHour;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
 
-  // if (hour >= openHour && hour >= closeHour) alert("we're currently open!");
-  // else alert("sorry we're closed");
   return (
-    <footer>{new Date().toLocaleTimeString()}.we're currently open!</footer>
+    <footer className="footer">
+      {isOpen ? (
+        <Order closeHour={closeHour} openHour={openHour} />
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00
+        </p>
+      )}
+    </footer>
   );
+}
 
-  // return React.createElement("footer", null, "we're currently open!");
+function Order({ closeHour, openHour }) {
+  return (
+    <div className="order">
+      <p>
+        We're open from {openHour}:00 until {closeHour}:00.Come visit us or
+        order online.
+      </p>
+      <button className="btn">Order</button>
+    </div>
+  );
 }
 
 const root = ReactDom.createRoot(document.getElementById("root"));

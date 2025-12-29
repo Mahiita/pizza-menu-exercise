@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDom from "react-dom/client";
 const pizzaData = [
   {
     name: "Focaccia",
@@ -50,13 +50,15 @@ function App() {
     <div>
       <Header />
       <Menu />
+      <Footer />
     </div>
   );
 }
 
 function Header() {
-  return <h1>Fast React Pizza Co.</h1>;
+  return <h1>Fast React Piazza Co.</h1>;
 }
+
 function Menu() {
   return (
     <div>
@@ -69,22 +71,31 @@ function Menu() {
 }
 
 function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour >= closeHour;
+
+  // if (hour >= openHour && hour >= closeHour) alert("we're currently open!");
+  // else alert("sorry we're closed");
   return (
-    <footer>{new Date().toLocaleTimeString()}We're currently open!</footer>
+    <footer>{new Date().toLocaleTimeString()}.we're currently open!</footer>
   );
+
+  // return React.createElement("footer", null, "we're currently open!");
 }
 
 function Pizza() {
   return (
     <div>
       <img src="pizzas/spinaci.jpg" alt="pizza spinaci" />
-      <h2>Pizaa Spinaci</h2>
+      <h2>Pizza Spinaci</h2>
       <p>Tomato, mozarella, spinach, and ricotta cheese</p>
     </div>
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDom.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
